@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  height:100vh;
+  background:#4a0d2e;
+  font-family:'Dancing Script',cursive;
+  overflow:hidden;
+}
+
+/* PAGES */
+.page{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2;
+}
+.hidden{display:none;}
+
+/* PAGE 1 HEART (NO CHANGE) */
+.heart{
+  position:relative;
+  width:380px;
+  height:340px;
+  animation:beat 2.8s infinite;
+}
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:300px;
+  background:linear-gradient(145deg,#ff8fab,#ff4d6d);
+  border-radius:190px 190px 0 0;
+  top:0;
+}
+.heart::before{
+  left:190px;
+  transform:rotate(-45deg);
+  transform-origin:0 100%;
+}
+.heart::after{
+  left:0;
+  transform:rotate(45deg);
+  transform-origin:100% 100%;
+}
+.heart-text{
+  position:absolute;
+  top:100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:240px;
+  text-align:center;
+  font-size:1.9rem;
+  color:#fff0f3;
+  z-index:5;
+}
+.small-heart{
+  position:absolute;
+  bottom:-65px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:48px;
+  cursor:pointer;
+  animation:beatSmall 1.8s infinite;
+}
+.card{
+  padding:34px;
+  border-radius:30px;
+  width:90%;
+  max-width:440px;
+  text-align:center;
+  background:linear-gradient(145deg,#f7c59f,#f2b880);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.35),
+    0 0 25px rgba(247,197,159,0.45);
+  animation:cardGlow 3.5s ease-in-out infinite;
+}
+.card h2{
+  font-size:1.3rem;
+  color:#5a2a27;
+  line-height:1.8;
+}
+
+/* MINI 3D HEART BUTTON */
+.mini-heart{
+  width:34px;
+  height:34px;
+  margin:28px auto 0;
+  position:relative;
+  cursor:pointer;
+  transform:rotate(-45deg);
+  animation:floatHeart 1.6s infinite;
+  background:linear-gradient(145deg,#ff6f91,#c9184a);
+  box-shadow:
+    inset -4px -4px 6px rgba(0,0,0,0.25),
+    inset 3px 3px 6px rgba(255,255,255,0.5),
+    0 10px 18px rgba(0,0,0,0.4);
+}
+.mini-heart::before,
+.mini-heart::after{
+  content:"";
+  width:34px;
+  height:34px;
+  position:absolute;
+  border-radius:50%;
+  background:linear-gradient(145deg,#ff6f91,#c9184a);
+}
+.mini-heart::before{top:-17px;left:0;}
+.mini-heart::after{left:17px;top:0;}
+
+/* TYPING PAGE */
+.scroll-page{
+  overflow-y:auto;
+  padding:40px 15px;
+  align-items:flex-start;
+}
+.cursor{animation:blink 1s infinite;}
+
+/* FALLING HEARTS & FLOWERS */
+.fall{
+  position:fixed;
+  top:-30px;
+  font-size:22px;
+  pointer-events:none;
+  z-index:1;
+  animation:fall linear forwards;
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,0.4));
+}
+
+/* ANIMATIONS */
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);opacity:1;}
+  100%{transform:translateY(120vh) rotate(360deg);opacity:0;}
+}
+@keyframes floatHeart{
+  0%{transform:rotate(-45deg) scale(1);}
+  50%{transform:rotate(-45deg) scale(1.25);}
+  100%{transform:rotate(-45deg) scale(1);}
+}
+@keyframes beat{50%{transform:scale(1.05);}}
+@keyframes beatSmall{50%{transform:translateX(-50%) scale(1.25);}}
+@keyframes blink{50%{opacity:0;}}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+  <div class="heart">
+    <div class="heart-text">
+      Devu,<br>
+      this is something<br>
+      I wanted to tell<br>
+      you ❤️
+    </div>
+    <div class="small-heart" onclick="goTo('page1','page2')">💗</div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+  <div class="card">
+    <h2>
+      Before I say something,<br>
+      I wanted to ask you<br>
+      some questions ponna 💗
+    </h2>
+    <div class="mini-heart" onclick="goTo('page2','page3')"></div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page hidden" id="page3">
+  <div class="card">
+    <h2>
+      Which is your favorite<br>
+      memorable moment<br>
+      with me ponna? 💖
+    </h2>
+    <div class="mini-heart" onclick="goTo('page3','page4')"></div>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page hidden" id="page4">
+  <div class="card">
+    <h2>
+      What do u think baby<br>
+      what makes us love<br>
+      each other so much 💛
+    </h2>
+    <div class="mini-heart" onclick="goTo('page4','page5')"></div>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page hidden" id="page5">
+  <div class="card">
+    <h2>
+      What do u think ponna<br>
+      if u weren't there in my life<br>
+      how could it have been 💕
+    </h2>
+    <div class="mini-heart" onclick="goTo('page5','page6')"></div>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page hidden scroll-page" id="page6">
+  <div class="card">
+    <h2 id="typedText"></h2>
+    <span class="cursor">|</span>
+    <div class="mini-heart" onclick="goTo('page6','page7')"></div>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page hidden" id="page7">
+  <div class="card">
+    <h2>
+      I love you ponna ❤️<br><br>
+      Will you be my Valentine? 💘<br><br>
+      You are already my Valentine,<br>
+      so Happy Valentine’s Day ponna 🌹💖
+    </h2>
+    <div class="mini-heart" onclick="goTo('page7','pageFinal')"></div>
+  </div>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="page hidden" id="pageFinal">
+  <div class="card">
+    <h2>
+      Forever yours ❤️<br><br>
+      Always you.<br>
+      Always us. 🫂💖
+    </h2>
+
+    <!-- WHATSAPP HEART -->
+    <a href="https://wa.me/919819949315" target="_blank">
+      <div class="mini-heart"></div>
+    </a>
+  </div>
+</div>
+
+<script>
+function goTo(from,to){
+  document.getElementById(from).classList.add("hidden");
+  document.getElementById(to).classList.remove("hidden");
+  if(to==="page6") startTyping();
+}
+
+/* TYPING TEXT */
+const text = `
+Before starting, I just want to say how much I love you, baby ❤️🫂
+
+I know I keep saying the same thing again and again, and maybe you might feel tired of hearing it,
+but baby, this love of mine is pure and real.
+
+It has been 1 year, 8 months, and 17 days since we started loving each other.
+We’ve had many ups and downs, but one thing has always remained the same—our love.
+I never stopped loving you, baby.
+
+The person I was before is still the same now.
+Yes, there may have been some small changes,
+but I promise you, baby, I will never change in a way that you don’t want.
+
+Honestly, baby, I never thought we would be together again or love each other this deeply.
+Now you hold a place in my life where, if you ever leave,
+I wouldn’t be able to let go.
+
+You are my everything—my heart, my veins, my soul.
+I have never loved anyone the way I love you, baby.
+
+Even the smallest things you do for me mean so much.
+They make me feel special and emotional.
+Thank you so much for everything, baby.
+
+Once again,
+I love you so much, baby ❤️🫂`;
+
+let i=0, started=false;
+function startTyping(){
+  if(started) return;
+  started=true;
+  const el=document.getElementById("typedText");
+  const timer=setInterval(()=>{
+    el.innerHTML += text[i]==="\n" ? "<br>" : text[i];
+    i++;
+    if(i>=text.length) clearInterval(timer);
+  },35);
+}
+
+/* FALLING HEARTS & FLOWERS */
+setInterval(()=>{
+  const e=document.createElement("div");
+  e.className="fall";
+  e.innerHTML=Math.random()>0.5?"💖":"🌸";
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=(Math.random()*4+5)+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),9000);
+},220);
+/* TINY VIBRATION ON HEART TAP (MOBILE) */
+document.addEventListener("click", e=>{
+  if(e.target.closest(".mini-heart") || e.target.classList.contains("small-heart")){
+    if(navigator.vibrate){
+      navigator.vibrate(20);
+    }
+  }
+});
+<!-- BACKGROUND ROMANTIC MUSIC -->
+/* SOFT BACKGROUND MUSIC – START ON FIRST INTERACTION */
+let musicStarted = false;
+const music = document.getElementById("bgMusic");
+music.volume = 0.25; // soft volume
+
+function startMusic(){
+  if(!musicStarted){
+    music.play().catch(()=>{});
+    musicStarted = true;
+  }
+}
+
+document.addEventListener("click", startMusic, { once:true });
+document.addEventListener("touchstart", startMusic, { once:true });
+</script>
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f8bfa3f89.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
+</audio>
+
+
+</body>
+</html>
